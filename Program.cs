@@ -10,6 +10,11 @@ namespace Xadrez
             tabuleiro tabuleiro = new tabuleiro(8, 8);
            Tela.ImprimirTabuleiro(tabuleiro);   
 
+            tabuleiro.ColocarPeca(new Torre(Cor.Preta, tabuleiro), new Posicao(0, 0));
+            tabuleiro.ColocarPeca(new Torre(Cor.Preta, tabuleiro), new Posicao(1, 3));
+
+            Tela.ImprimirTabuleiro(tabuleiro);
+
         }
     }
 }
