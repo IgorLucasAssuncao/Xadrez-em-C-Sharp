@@ -29,7 +29,7 @@ namespace Xadrez
         {
             if (peca.Cor == Cor.Branca)
             {
-                Console.Write(peca);
+                Console.Write(peca +" ");
             }
             else
             {
@@ -38,6 +38,13 @@ namespace Xadrez
                 Console.Write(peca);
                 Console.ForegroundColor = aux;
             }
+        }
+        public static PosicaoXadrez LerPosicaoXadrez()
+        {
+            string s = Console.ReadLine();
+            char coluna = s[0];
+            int linha = int.Parse(s[1] + "");
+            return new PosicaoXadrez(coluna, linha);
         }
     }
 }

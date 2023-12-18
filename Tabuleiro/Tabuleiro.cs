@@ -54,8 +54,8 @@ namespace Tabuleiro
             }
             
         }
-        #endregion  
-
+        #endregion
+        #region Funções de Movimentação
         internal void ColocarPeca(Peca peca, Posicao pos)
         {
             if (ExistePeca(pos))
@@ -66,5 +66,17 @@ namespace Tabuleiro
             peca.Posicao = pos;
 
         }
+        internal Peca? RetirarPeca(Posicao pos)
+        {
+            if (Peca(pos) == null)
+            {
+                return null;
+            }
+            Peca aux = Peca(pos);
+            aux.Posicao = null;
+            Pecas[pos.Linha, pos.Coluna] = null;
+            return aux;
+        }
+        #endregion
     }
 }
