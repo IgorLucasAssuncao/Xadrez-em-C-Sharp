@@ -22,6 +22,10 @@ namespace Xadrez
         }
         public void ExecutaMovimento(Posicao origem, Posicao destino)
         {
+            if(tab.ValidarPosicao(origem) == false || tab.ValidarPosicao(destino)==false)
+            {
+                throw new TabuleiroException("Posição de origem inválida ou destino, inválida!");
+            }
             Peca? p = tab.RetirarPeca(origem);
             p.IncrementarQtdMovimentos();
             Peca? pecaCapturada = tab.RetirarPeca(destino);
@@ -33,6 +37,7 @@ namespace Xadrez
             tab.ColocarPeca(new Torre(Cor.Branca, tab), new PosicaoXadrez('c', 2).ToPosicao());
             tab.ColocarPeca(new Torre(Cor.Branca, tab), new PosicaoXadrez('d', 2).ToPosicao());
             tab.ColocarPeca(new Torre(Cor.Branca, tab), new PosicaoXadrez('e', 1).ToPosicao());
+            tab.ColocarPeca(new Rei(Cor.Branca, tab), new PosicaoXadrez('e', 2).ToPosicao());
         }
 
     }

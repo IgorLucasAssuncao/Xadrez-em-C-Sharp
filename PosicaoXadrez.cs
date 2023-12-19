@@ -2,7 +2,7 @@
 
 namespace Xadrez
 {
-    internal class PosicaoXadrez
+    internal class PosicaoXadrez //Faz a conversão de uma posição do xadrez para uma posição de matriz
     {
         public char Coluna { get; set; }
         public int Linha { get; set; }

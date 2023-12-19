@@ -18,6 +18,15 @@ namespace Xadrez
                     Console.WriteLine();
                     Console.Write("Origem: ");
                     Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+                   if(partida.tab.Peca(origem) == null)
+                    {
+                        throw new TabuleiroException("Não existe peça na posição de origem escolhida!");
+                    }
+                    bool[,] posicoesPossiveis = partida.tab.Peca(origem).MovimentosPossiveis();
+
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
+
                     Console.Write("Destino: ");
                     Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
                     partida.ExecutaMovimento(origem, destino);

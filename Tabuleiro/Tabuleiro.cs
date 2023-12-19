@@ -55,6 +55,7 @@ namespace Tabuleiro
             
         }
         #endregion
+
         #region Funções de Movimentação
         internal void ColocarPeca(Peca peca, Posicao pos)
         {
