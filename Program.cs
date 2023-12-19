@@ -13,23 +13,35 @@ namespace Xadrez
                
                 while(partida.Terminada == false)
                 {
-                    Console.Clear();
-                    Tela.ImprimirTabuleiro(partida.tab);
-                    Console.WriteLine();
-                    Console.Write("Origem: ");
-                    Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
-                   if(partida.tab.Peca(origem) == null)
+                    try
                     {
-                        throw new TabuleiroException("Não existe peça na posição de origem escolhida!");
+                        Console.Clear();
+                        Tela.ImprimirTabuleiro(partida.tab);
+
+                        Console.WriteLine();
+                        Console.WriteLine("Turno: " + partida.Turno);
+                        Console.WriteLine("Aguardando jogada: " + partida.JogadorAtual);
+
+                        Console.WriteLine();
+                        Console.Write("Origem: ");
+                        Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+                        partida.ValidarPosicaoDeOrigem(origem);
+
+                        bool[,] posicoesPossiveis = partida.tab.Peca(origem).MovimentosPossiveis();
+
+                        Console.Clear();
+                        Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
+
+                        Console.Write("Destino: ");
+                        Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
+                        partida.ValidarPosicaoDeDestino(origem, destino);
+                        partida.ExecutaMovimento(origem, destino);
                     }
-                    bool[,] posicoesPossiveis = partida.tab.Peca(origem).MovimentosPossiveis();
-
-                    Console.Clear();
-                    Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
-
-                    Console.Write("Destino: ");
-                    Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
-                    partida.ExecutaMovimento(origem, destino);
+                    catch(TabuleiroException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
                 }
             }catch(TabuleiroException e)
             {

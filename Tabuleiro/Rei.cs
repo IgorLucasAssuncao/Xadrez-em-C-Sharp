@@ -21,6 +21,7 @@ namespace Tabuleiro
         {
             bool[,] mat = new bool[tab.Linha, tab.Coluna];
             Posicao pos = new Posicao(0, 0);
+
             //acima
             pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna);
             if (tab.ValidarPosicao(pos) && PodeMover(pos))
@@ -78,6 +79,29 @@ namespace Tabuleiro
             }
                 return mat;
         }
+
+        public override bool ExisteMovimentosPossiveis()
+        {
+            bool[,] bools = MovimentosPossiveis();
+
+            for (int i = 0; i < tab.Linha; i++)
+            {
+                for (int j = 0; j < tab.Coluna; j++)
+                {
+                    if (bools[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public override bool ValidaDestino(Posicao pos)
+        {
+            return MovimentosPossiveis()[pos.Linha, pos.Coluna];
+        }
+
         public override string ToString()
         {
             return "R";

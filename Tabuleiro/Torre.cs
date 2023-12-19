@@ -69,6 +69,25 @@ namespace Tabuleiro
             return mat;
 
         }
+        public override bool ExisteMovimentosPossiveis()
+        {
+            bool[,] mat = MovimentosPossiveis();
+            for (int i = 0; i < tab.Linha; i++)
+            {
+                for (int j = 0; j < tab.Coluna; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public override bool ValidaDestino(Posicao pos)
+        {
+            return MovimentosPossiveis()[pos.Linha, pos.Coluna];
+        }
         public override string ToString()
         {
             return "T";

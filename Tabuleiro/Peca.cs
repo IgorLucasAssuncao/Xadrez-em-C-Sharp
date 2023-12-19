@@ -25,6 +25,10 @@ namespace Tabuleiro
             QtdMovimentos++;
         }
         public abstract bool[,] MovimentosPossiveis();
+
+        public abstract bool ExisteMovimentosPossiveis();
+
+        public abstract bool ValidaDestino(Posicao pos);
        
 
     }
