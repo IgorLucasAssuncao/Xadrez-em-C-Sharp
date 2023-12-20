@@ -15,27 +15,23 @@ namespace Xadrez
                 {
                     try
                     {
-                        Console.Clear();
-                        Tela.ImprimirTabuleiro(partida.tab);
-
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + partida.Turno);
-                        Console.WriteLine("Aguardando jogada: " + partida.JogadorAtual);
-
-                        Console.WriteLine();
+                        
+                        Tela.ImprimirPartida(partida);
                         Console.Write("Origem: ");
                         Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
-                        partida.ValidarPosicaoDeOrigem(origem);
 
-                        bool[,] posicoesPossiveis = partida.tab.Peca(origem).MovimentosPossiveis();
+                        partida.ValidarPosicaoDeOrigem(origem);  //verifica se a posição de origem é válida
+
+                        bool[,] posicoesPossiveis = partida.tab.Peca(origem).MovimentosPossiveis(); //cria uma matriz de booleanos para armazenar as posições possíveis de movimento da peça
 
                         Console.Clear();
-                        Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
+                        Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis); //imprime o tabuleiro com as posições possíveis de movimento da peça
 
                         Console.Write("Destino: ");
                         Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
+
                         partida.ValidarPosicaoDeDestino(origem, destino);
-                        partida.ExecutaMovimento(origem, destino);
+                        partida.RealizaJogada(origem, destino);
                     }
                     catch(TabuleiroException e)
                     {
@@ -43,6 +39,8 @@ namespace Xadrez
                         Console.ReadLine();
                     }
                 }
+                Console.WriteLine("XequeMate");
+                Console.WriteLine(partida.JogadorAtual + " Venceu!");
             }catch(TabuleiroException e)
             {
                 Console.WriteLine(e.Message);
