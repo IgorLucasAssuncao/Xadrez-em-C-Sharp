@@ -31,9 +31,9 @@ namespace Tabuleiro
         {
             return Pecas[pos.Linha, pos.Coluna];
         }
-        #endregion
+        #endregion 
 
-        #region Funções de Validação
+        #region Funções de Validação (Posição válida e se existe Peça)
         internal bool ValidarPosicao(Posicao pos)
         {
             if (pos.Linha < 0 || pos.Linha >= Linha || pos.Coluna < 0 || pos.Coluna >= Coluna)
@@ -56,7 +56,7 @@ namespace Tabuleiro
         }
         #endregion
 
-        #region Funções de Movimentação
+        #region Funções de Movimentação (Colocar e Retirar)
         internal void ColocarPeca(Peca peca, Posicao pos)
         {
             if (ExistePeca(pos))
@@ -73,11 +73,11 @@ namespace Tabuleiro
             {
                 return null;
             }
-            Peca aux = Peca(pos);
+            Peca aux = Peca(pos); // Mesma coisa que Pecas[pos.Linha, pos.Coluna];
             aux.Posicao = null;
             Pecas[pos.Linha, pos.Coluna] = null;
             return aux;
         }
-        #endregion
+        #endregion 
     }
 }

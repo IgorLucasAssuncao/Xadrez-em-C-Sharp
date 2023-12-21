@@ -28,11 +28,11 @@ namespace Tabuleiro
         {
             QtdMovimentos--;
         }
-        public abstract bool[,] MovimentosPossiveis();
+        public abstract bool[,] MovimentosPossiveis(); //Retorna uma matriz de movimentos possíveis
 
-        public abstract bool ExisteMovimentosPossiveis();
+        public abstract bool ExisteMovimentosPossiveis(); //Verifica na matriz gerada pelo "MovimentosPossiveis" se existe algum movimento possível
 
-        public abstract bool ValidaDestino(Posicao pos);
+        public abstract bool ValidaDestino(Posicao pos); //Valida se o destino é valido consultado a matriz de "MovimentosPossiveis"
        
 
     }

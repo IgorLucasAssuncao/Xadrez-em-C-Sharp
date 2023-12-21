@@ -105,6 +105,7 @@ namespace Xadrez
 
             for (int i = 0; i < tab.Linha; i++)
             {
+                Console.BackgroundColor = fundoOriginal;
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < tab.Coluna; j++)
                 {

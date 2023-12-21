@@ -17,20 +17,22 @@ namespace Xadrez
                     {
                         
                         Tela.ImprimirPartida(partida);
+
                         Console.Write("Origem: ");
                         Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
 
-                        partida.ValidarPosicaoDeOrigem(origem);  //verifica se a posição de origem é válida
+                        partida.ValidarPosicaoDeOrigem(origem);  //verifica se a posição de origem é válida (se a peça não é null, de cor diferente, e se possui movimentos Possiveis)
 
                         bool[,] posicoesPossiveis = partida.tab.Peca(origem).MovimentosPossiveis(); //cria uma matriz de booleanos para armazenar as posições possíveis de movimento da peça
-
+                    
                         Console.Clear();
                         Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis); //imprime o tabuleiro com as posições possíveis de movimento da peça
 
                         Console.Write("Destino: ");
                         Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
+                         
+                        partida.ValidarPosicaoDeDestino(origem, destino); //verifica se a posição de destino é válida 
 
-                        partida.ValidarPosicaoDeDestino(origem, destino);
                         partida.RealizaJogada(origem, destino);
                     }
                     catch(TabuleiroException e)
