@@ -16,7 +16,7 @@ namespace Xadrez
                     try
                     {
                         
-                        Tela.ImprimirPartida(partida);
+                        Tela.ImprimirPartida(partida);                                                                                                                                                                                                                                             
 
                         Console.Write("Origem: ");
                         Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();

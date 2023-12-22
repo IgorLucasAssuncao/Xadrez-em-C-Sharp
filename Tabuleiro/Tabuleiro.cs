@@ -74,8 +74,9 @@ namespace Tabuleiro
                 return null;
             }
             Peca aux = Peca(pos); // Mesma coisa que Pecas[pos.Linha, pos.Coluna];
-            aux.Posicao = null;
-            Pecas[pos.Linha, pos.Coluna] = null;
+
+            aux.Posicao = null; //Anula a posicao
+            Pecas[pos.Linha, pos.Coluna] = null; //Anula a posição na tabela
             return aux;
         }
         #endregion 

@@ -8,6 +8,7 @@ namespace Xadrez
     internal class PartidaDeXadrez
     {
         public tabuleiro tab { get; private set; } //Tabuleiro que vai ser manipulado
+
         public int Turno { get; protected set; }
 
         public Cor JogadorAtual { get; protected set; } //Controle de vez
@@ -17,7 +18,6 @@ namespace Xadrez
         private HashSet<Peca> capturadas; //Todas as peças capturadas
 
         public bool Xeque = false;
-
         public Peca? VulneravelEnPassant;
 
         public PartidaDeXadrez()
@@ -162,16 +162,20 @@ namespace Xadrez
             {
                 throw new TabuleiroException("Posição de origem inválida ou destino, inválida!");
             }
+
             Peca? p = tab.RetirarPeca(origem); //Retira a peça da posição de origem (A peça que vai ser movida)
             p.IncrementarQtdMovimentos(); //Incrementa a quantidade de movimentos da peça
+
             Peca? pecaCapturada = tab.RetirarPeca(destino); //Retira a peça da posição de destino (A peça que vai ser capturada)
+
             tab.ColocarPeca(p, destino); //Coloca a peça da origem na posição de destino
 
             if (pecaCapturada != null)
             {
                 capturadas.Add(pecaCapturada);
             }
-
+            
+            //Ao fazer o roque, movimentamos somente o rei, como ainda faltar mover a torre, fazemos isso a mão
             //Roque grande
             if (p is Rei && destino.Coluna == origem.Coluna - 2)
             {
@@ -180,9 +184,11 @@ namespace Xadrez
 
                 Peca T = tab.RetirarPeca(origemT);
                 T.IncrementarQtdMovimentos();
+
                 tab.ColocarPeca(T, DestinoT);
             }
 
+            //Ao fazer o roque, movimentamos somente o rei, como ainda faltar mover a torre, fazemos isso a mão
             //Roque 
             if (p is Rei && destino.Coluna == origem.Coluna + 2)
             {
@@ -197,7 +203,7 @@ namespace Xadrez
             //Jogada especial En Passant
             if (p is Peao)
             {
-                if (origem.Coluna != destino.Coluna && pecaCapturada == null)
+                if (origem.Coluna != destino.Coluna && pecaCapturada == null) //Não houve peça capturada e a coluna do peao mudou
                 {
                     Posicao Peao;
                     if (p.Cor == Cor.Branca)
